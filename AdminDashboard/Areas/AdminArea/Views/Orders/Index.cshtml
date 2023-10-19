@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <!--breadcrumb-->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="breadcrumb-title pe-3">Orders</div>
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item">
+                        <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"> Orders</li>
+                </ol>
+            </nav>
+        </div>
+
+    </div>
+    <!--end breadcrumb-->
+    <div class="row">
+        <div class="col-md-2">
+            <h6 class="mb-0 text-uppercase">Orders List</h6>
+        </div>
+        <div class="col-md-3">
+            <select id="inputState" class="form-select">
+                <option selected>--Filter Orders--</option>
+                <option>All Orders</option>
+                <option>Paid Orders</option>
+                <option>Pending Orders</option>
+                <option>Deliveried Orders</option>
+                <option>Canceled Orders</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary">
+                Search
+            </button>
+        </div>
+
+        <div class="col-md-3">
+            <div class="sts">
+                <select id="inputState" class="form-select">
+                    <option selected>--Update Orders Status--</option>
+                    <option>Paid </option>
+                    <option>Canceled </option>
+                    <option>Deliveried </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-1 ">
+            <div class="stsbtn"><button type="button" class="btn btn-success">Update</button></div>
+
+        </div>
+    </div>
+
+
+    <hr />
+
+    <div class="card">
+        <div class="card-body">
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap5">
+                <div class="table-responsive">
+                    <table id="example2" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Product</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                                <th>Address</th>
+                                <th>Order Id</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input class="form-check-input" type="checkbox" id="gridCheck"></td>
+                                <td>Tiger Nixon</td>
+                                <td>985632147</td>
+                                <td>Edinburgh</td>
+                                <td><span class="badge bg-success">Paid</span></td>
+                                <td> 435</td>
+                                <td id="copyText">Bangalore  <i class="bx bx-clipboard" style="cursor: pointer; float:right;"></i></td>
+                                <td>XY1455425</td>
+                                <td><a href="#" title="delete"><i class="text-primary" data-feather="eye"></i></a></td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+        $(document).ready(function () {
+            debugger;
+            $('.sts').hide();
+
+            $('.stsbtn').hide();
+            $("#gridCheck").change(function () {
+                if ($(this).is(":checked")) {
+                    $('.sts').show();
+                    $('.stsbtn').show();
+                } else {
+                    $('.sts').hide();
+                    $('.stsbtn').hide();
+                }
+            });
+
+        });
+</script>
+<script>
+    const copyText = document.getElementById('copyText');
+    copyText.addEventListener('click', async () => {
+        const textToCopy = copyText.textContent;
+
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+    });
+</script>
